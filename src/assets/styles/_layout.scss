@@ -1,0 +1,7 @@
+.page-container {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+}
+.scroll-sentinel { height: 1px; width: 100%; }
+.end-message { text-align: center; color: var(--color-text-muted); padding: var(--space-xl); font-size: 0.85rem; }

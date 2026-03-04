@@ -1,0 +1,48 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+coverage
+*.local
+.env
+.env.*
+!.env.example
+*.pem
+
+# Editor directories and files
+.editorconfig
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+*.tsbuildinfo
+
+.eslintcache
+.oxlintcache
+
+# Cypress
+/cypress/videos/
+/cypress/screenshots/
+
+# Vitest
+__screenshots__/
+
+# Vite
+*.timestamp-*-*.mjs
