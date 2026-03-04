@@ -7,6 +7,14 @@ import { api } from '@/utils/api';
 import { useShows } from '@/composables/useShows';
 import type { Show } from '@/types/tvmaze.types';
 
+const createAxiosResponse = <T>(data: T): AxiosResponse<T> => ({
+  data,
+  status: 200,
+  statusText: 'OK',
+  headers: {},
+  config: { headers: {} } as AxiosResponse<T>['config'],
+});
+
 const minimalShow: Show = {
   id: 1,
   name: 'Test Show',
@@ -30,18 +38,14 @@ describe('useShows', () => {
   });
 
   it('populates shows after fetch', async () => {
-    vi.mocked(api.getShows).mockResolvedValue({
-      data: [minimalShow],
-    } as AxiosResponse<Show[]>);
+    vi.mocked(api.getShows).mockResolvedValue(createAxiosResponse([minimalShow]));
     const { shows, fetchNextPage } = useShows();
     await fetchNextPage();
     expect(shows.value).toHaveLength(1);
   });
 
   it('increments currentPage after fetch', async () => {
-    vi.mocked(api.getShows).mockResolvedValue({
-      data: [minimalShow],
-    } as AxiosResponse<Show[]>);
+    vi.mocked(api.getShows).mockResolvedValue(createAxiosResponse([minimalShow]));
     const { currentPage, fetchNextPage } = useShows();
     await fetchNextPage();
     expect(currentPage.value).toBe(1);
@@ -62,7 +66,7 @@ describe('useShows', () => {
   });
 
   it('resets isLoading after fetch', async () => {
-    vi.mocked(api.getShows).mockResolvedValue({ data: [] } as AxiosResponse<Show[]>);
+    vi.mocked(api.getShows).mockResolvedValue(createAxiosResponse([]));
     const { isLoading, fetchNextPage } = useShows();
     await fetchNextPage();
     expect(isLoading.value).toBe(false);
